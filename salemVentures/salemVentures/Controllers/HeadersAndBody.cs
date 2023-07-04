@@ -4,36 +4,32 @@ namespace salemVentures.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class HeadersAndBody : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<HeadersAndBody> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public HeadersAndBody(ILogger<HeadersAndBody> logger)
         {
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet("test")]
+        public string test()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return "ddddddddddd";
         }
 
         [HttpGet("GetCallHeadersAndBody")]
-        public string GetHeadersAndBody(FromHeaderAttribute fh)
+        public IActionResult GetHeadersAndBody()
         {
-            return "ddddddddddd";
+            var x = Request.Headers;
+            var y = Request.Body;
+            return Ok("");
         }
 
         //[HttpGet(Name = "GetWeatherForecast")]
