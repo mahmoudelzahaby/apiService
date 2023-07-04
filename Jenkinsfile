@@ -24,7 +24,7 @@ pipeline {
     
     stage('Build and Push Image') {
       steps {
-        sh "docker build -t $ECR_REPOSITORY/apiApp:${IMAGE_TAG} ."
+        sh "docker build -t $ECR_REPOSITORY/apiApp:${IMAGE_TAG} ./salemVentures/salemVentures/Dockerfile "
         sh "docker push $ECR_REPOSITORY/apiApp:${IMAGE_TAG}"
       }
     }
