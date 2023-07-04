@@ -20,3 +20,7 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "salemVentures.dll"]
+
+
+FROM nginx:alpine
+COPY --from=final /app/publish /usr/share/nginx/html
