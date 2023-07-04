@@ -1,0 +1,20 @@
+metadata:
+  name: apiApp-deployment
+  serviceName: apiApp-svc
+  namespace: default
+  labels:
+    app: apiApp
+    version: "1.0.0"
+
+replicaCount: 1
+
+image:
+  repository: 328440967566.dkr.ecr.us-east-1.amazonaws.com/apiApp
+  pullPolicy: Always
+  tag: "latest"
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 80
+  nodePort: 30080
