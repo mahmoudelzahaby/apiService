@@ -46,6 +46,7 @@ Install Helm and set up the Helm client.
 Package the Helm chart: helm package chart-directory.
 
 Deploy the API service to Kubernetes using the Helm chart: helm install release-name chart-name.tgz.
+-------
 
-Contributing
+## Contributing
 Contributions are welcome! Submit pull requests or open issues for any improvements or issues encountered.
