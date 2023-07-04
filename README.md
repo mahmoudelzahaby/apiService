@@ -1,9 +1,12 @@
 # DevOps Challenge: API Service Deployment
+
+
+
 ### This project demonstrates the deployment process of an API service using .NET. It involves creating the API service, Dockerizing it, setting up a CI/CD pipeline, creating a Helm chart, and deploying it to Kubernetes.
 
 --------------------------
 ## Overview
-This project showcases the end-to-end DevOps process for deploying an API service using .NET, Docker, CI/CD pipelines, Helm, and Kubernetes.
+Simple web application that prints the request header, method, and body. Tech stack and language are your choices.
 --------------------------
 ### Steps
 - Create the API Service: Develop the API service using .NET framework, implementing the desired functionality and endpoints.
@@ -19,33 +22,40 @@ This project showcases the end-to-end DevOps process for deploying an API servic
 ### Usage
 Clone the repository: git clone https://github.com/your/repository.git
 
-Install prerequisites: .NET framework, Docker.
+Make sure to have prerequisites: .NET framework, Docker, K8s, Helm.
 
-Start the API service locally: 
-'''
-docker run {dockerimage:tag}
-'''
+- To run the app using docker build the docker image -->
+  ```
+  cd salemVentures/salemVentures
+  docker build . {appName:Tag}
+  docker run -p 8080:80 {appName:Tag}
+  ```
+- Then You can access it using browser --> http://localhost:8080
+- Try the api using tools like (Postman)
 
-Access the API endpoints using the provided base URL: GET http://localhost:port/api/endpoint
+  
+### Helm Chart
+The Helm chart defines the deployment, service, and configuration of the API service in Kubernetes.
+Customize the chart templates and values.yaml file as per your requirements.
+- To run it using helm chart after deploy it in registery (public, private)
+  ```
+  helm install {name} /apiApp-helm
+  ```
+- To run using simple yaml file in kubernetes (EKS)
+  ***NOTE*** Don't forget to change the values in the deployment and consider the cluster to change the service type or adding ingress.
+  ```
+  cd K8S
+  kubectl apply -f .
+  ```
 ---
 
 ### CI/CD Pipeline
-The CI/CD pipeline automates the build, test, and deployment process.
-Customize the pipeline according to your preferred CI/CD tool.
-Include stages for building, testing, and deploying the API service.
-Helm Chart
-The Helm chart defines the deployment, service, and configuration of the API service in Kubernetes.
-Customize the chart templates and values.yaml file as per your requirements.
+The CI/CD pipeline automates the build and deployment process in kubernetes cluster (EKS) by adding cron job check the commits of the master branch to fire the pipeline if there are any commits.
+Customize the pipeline Using jenkinsfile.
 
 
-### Deploying to Kubernetes
-Ensure access to a Kubernetes cluster.
 
-Install Helm and set up the Helm client.
 
-Package the Helm chart: helm package chart-directory.
-
-Deploy the API service to Kubernetes using the Helm chart: helm install release-name chart-name.tgz.
 -------
 
 
